@@ -1,0 +1,23 @@
+
+
+<html>
+<head>
+<title> You can't close me!</title>
+  <script>
+    function showFinish()
+    {
+var title = window.document.title ;				//获得文档的title
+
+alert(title);
+window.location.reload();						//重新刷新页面
+        
+    }
+  </script>
+</head>
+
+<body onload = "showFinish();">			<!—事件定义代码 -->
+<!--  其他页面内容 -->
+<div id = “container”> </div>
+</body>
+</html>
+

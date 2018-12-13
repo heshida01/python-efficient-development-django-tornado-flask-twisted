@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load user_tags %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block head_link %}
+{% if user %}
+<link rel="alternate" type="application/rss+xml" title="{{ user.realname }} {% trans ' recent message' %}" href="/user/feed/rss/recent/{{ user.username }}" />
+{% else %}
+<link rel="alternate" type="application/rss+xml" title="{% trans 'Recent message of eveyone' %}" href="/feed/rss/recent/" />
+{% endif %}
+{% endblock %}
+
+{% block  main %}
+    {% if user %}        
+        <div class="userinfo">
+            {% include 'include/userinfo.html' %}
+        </div>
+    {% else %}
+    {% include 'include/postform.html' %}
+    {% endif %}
+    {% if islogin %}
+        {% if self_home %}
+            {% include 'include/postform.html' %}
+        {% endif %}
+    {% endif %}
+
+    <div class="list"
+        <ol>
+        {% for item in notes %}
+        <li>
+            {% include 'include/list_item.html' %} 
+        </li>
+        {% endfor %}
+        </ol>
+        <div class="pagebar">
+            {{ page_bar|safe }}
+            {% if user %}
+                <a href="/user/feed/rss/recent/{{ user.username }}" alt="{% trans 'Subscription' %}">
+            {% else %}
+                 <a href="/feed/rss/recent/" alt="{% trans 'Subscription' %}">
+            {% endif %}
+           <img src="/statics/images/feed.png" style="border:0;margin-bottom:-2px;" alt="feed icon" />
+           </a>
+        </div>
+    </div>    
+
+             
+    {% if user %}
+    <div class="friends">
+        <h3>{{user.realname}}{% trans '"s friends' %}</h3>
+        <div class="list">
+        {% for friend in friends %}
+        <a href="{% url 'tmitter-mvc-views-index_user' friend.username %}" title="{{ friend.realname }}"><img src="{{ friend.face|face16 }}" alt="{{ friend.realname }}" class="face16" /></a>
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

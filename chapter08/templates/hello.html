@@ -1,0 +1,7 @@
+﻿<!doctype html>
+<title>Hello from Flask</title>
+{% if name %}							<!—判断name参数是否为空 
+  <h1>Hello {{ name }}!</h1>				<!—当name参数不为空时，本行生效 
+{% else %}
+  <h1>Hello World!</h1>					<!—当name参数为空时，本行生效 
+{% endif %}

@@ -1,0 +1,7 @@
+h1 { color: green;}
+
+p { font-style:italic; }
+
+div>#iter { font-weight: bold;}
+
+span+h3 {background-color:#000000; color:yellow}

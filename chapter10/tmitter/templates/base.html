@@ -1,0 +1,66 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% spaceless %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tmitter - {% block title %}{% endblock %}</title>
+<link rel="shortcut icon" href="/statics/images/favicon.png" />
+{% block head_link %}{% endblock %}
+<link rel="stylesheet" type="text/css" href="/statics/styles/default.css" media="all" />
+{% block styles %}{% endblock %}
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script> 
+<script type="text/javascript"> 
+$(function() { 
+var rWidth = $(document).width() / 230.0;
+var rHeight = $(document).height() / 34;
+//alert(rHeight+","+ rWidth); 
+$(document.body).css("zoom",Math.min(rWidth, rHeight)); 
+}); 
+$(window).resize(function() { 
+//var rWidth = window.screen.availWidth / 200.0;
+///var rHeight = window.screen.availHeight / 320.0;
+//alert(rHeight+","+ rWidth); 
+
+var rWidth = $(document).width() / 230.0;
+var rHeight = $(document).height() / 34;
+$(document.body).css("zoom",Math.min(rWidth, rHeight)); 
+}); 
+</script> 
+
+</head>
+<body style="zoom1:3;transform1:scale(3)">
+
+{% block scripts %}{% endblock %}
+<div id="container">
+    <div id="header">
+        <h1><a href="/"><img src="/statics/images/favicon.png" alt="Tmitter" />Tmitter</a></h1>
+        <ul id="nav">
+            <li><a href="/">{% trans 'Home' %}</a></li>
+            <li><a href="/users">{% trans 'Everyone' %}</a></li>
+            {% if not islogin %}            
+            <li><a href="/signin">{% trans 'Signin' %}</a></li>
+            <li><a href="/signup">{% trans 'Signup' %}</a></li>
+            {% else %} 
+            <li><a href="/user/{{ username }}">{% trans 'Me' %}</a></li>
+            <li><a href="/settings">{% trans 'Edit' %}</a></li>
+            <li><a href="/signout">{% trans 'Signout' %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div id="main">
+    {% block main %}{% endblock %}
+    </div>
+    <div id="footer">
+    	Powered by <a href="http://www.thewolfs.com.cn">Thewolfs Lab</a>.		
+	</div>
+</div>
+</body>
+</html>
+{% endspaceless %}

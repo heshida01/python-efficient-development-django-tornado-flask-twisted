@@ -1,0 +1,23 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load user_tags %}
+{% load common_tags %}
+<div class="face">
+    <a href="{% url 'tmitter-mvc-views-index_user' user.username %}"><img src="{{ user.face|face }}" class="face75" /></a>
+</div>
+<ul class="right">
+    <li>{% trans 'Name' %}:{{ user.realname }}</li>
+    <li>
+        <span><a href="{{ user.url }}" target="_blank" title="{% trans 'Open as new window.' %}">{% trans 'Blog' %}</a></span>
+		{% if islogin %}
+			{% if user|in_list:login_user_friend_list %}
+	        <span><a href="{% url 'tmitter.mvc.views.friend_remove' user.username %}" title="{% trans 'Remove friend' %} {{ user.realname }}">{% trans 'Unfollow' %}</a></span>
+			{% else %}
+			<span><a href="{% url 'tmitter-mvc-views-friend_add' user.username %}" title="{{ user.realname }}">{% trans 'Follow' %}</a></span>		
+			{% endif %}
+		{% endif %}
+    </li>
+    <li>{{ user.about }}</li>
+</ul>

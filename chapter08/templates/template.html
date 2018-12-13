@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>First Jinja2 webpage</title>
+</head>
+<body>
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item}}">{{ item }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <h1>Hello world</h1>
+    {{ a_variable }}
+
+    {# a comment #}
+</body>
+</html>

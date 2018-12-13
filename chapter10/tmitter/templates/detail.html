@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% load user_tags %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block main %}
+<div class="list">
+    <ol>
+    <li class="detail">
+        <div class="face">
+            <p>
+                <a href="{% url 'tmitter-mvc-views-index_user' item.user.username %}">
+                <img src="{{ item.user.face|face32 }}" class="face32" />
+                </a>
+            </p>
+            <p class="name">
+                <a href="{% url 'tmitter-mvc-views-index_user' item.user.username %}" class="name">{{ item.user.realname }}</a>
+            </p>
+        </div>
+        <div class="right">
+            <p class="message">{{ item.message|urlize }}</p>
+            <div class="info">
+                <span class="date">{{ item.addtime|timesince }} {% trans 'ago' %}</span><br />
+                <span class="category">{% trans 'from' %} {{ item.category.name }}</span>
+                {% if islogin %}
+                {% ifequal userid item.user.id %}
+                <span class="delete"><a href="{% url 'tmitter-mvc-views-detail_delete' item.id %}">{% trans 'Delete' %}</a></span>
+                {% endifequal  %}
+                {% endif %}
+            </div>
+        <div>             
+    </li>
+    </ol>
+</div>
+{% endblock %}

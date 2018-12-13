@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<script type="text/javascript"  src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"> </script>
+  <script>
+    function showFinish()
+    {
+var top = $("#mainFrame").parent();    			/*获取父元素*/
+top.css("border", "2px solid yellow");
+
+
+/*获取从id = mainFrame的标签到<html>标签当中的所有mainFrame的祖先节点*/
+var middle = $("#mainFrame").parentsUntil("body");
+
+middle.css("background-color", "red");
+
+var child1 = $("#mainFrame").children().first();   	/*mainFrame的第一个子元素*/
+child1.css("border", "3px solid blue");
+
+    }
+  </script>
+</head>
+
+<body onload = "showFinish();">			<!—事件定义代码 -->
+我在第一层
+<div id = "top">
+我在第二层
+<div id = "second">
+我在第三层
+<div id = "mainFrame">
+我在mainFrame中
+<div id = "left">我是mainFrame的第一个子节点</div>
+<div id = "right">我是mainFrame的第二个子节点</div>
+</div>
+</div>
+</div>
+</body>
+</html>

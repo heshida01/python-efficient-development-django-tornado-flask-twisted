@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<script type="text/javascript"  src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"> </script>
+  <script>
+    function showFinish()
+    {
+
+$("button").hide();				/*隐藏所有<button>标签*/
+
+/*将所有<button>标记用慢速渐变为50%透明度，并在完成渐变后弹出alert消息框*/
+$("button").fadeTo("slow", 0.5, function(){
+    alert("渐变已经完成");
+  });		
+
+/*将所有<p>标记用快速执行动画（移动到x坐标100px处，并改变宽度为650px），
+并在完成渐变后弹出alert消息框*/
+$("p").animate({
+    left:'100px',
+    width:'650px'
+  } ,
+ "fast", function(){
+    alert("自定义动画已经完成");
+  });			
+
+$("#paragraph1").stop();			/*停止id=paragraph1标记的动画*/
+
+
+    }
+  </script>
+</head>
+
+<body onload = "showFinish();">			<!—事件定义代码 -->
+<button id ="btn1"> btn1</button>
+<button id ="btn2"> btn2</button>
+<p style="background-color:red">动画段落</p>
+<p id = "paragraph1" style="background-color:green">无动画段落</p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>  
+</html>      
+    <head>  
+        <title>消息录入页面</title>  
+    </head>  
+    <body>
+        <form action="?" method="post">   
+        {% csrf_token %}  
+            <fieldset>  
+                <legend>请输入并提交</legend>  
+                        {{ form.as_p }}  
+
+                        <input type="submit" value="submit" />  
+            </fieldset>  
+        </form>  
+    </body>  
+</html>  
