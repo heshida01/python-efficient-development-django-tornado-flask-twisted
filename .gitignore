@@ -1,0 +1,9 @@
+### IntelliJ IDEA ###
+.idea
+
+
+### visual enviroment ###
+venv/
+
+### django 默认的数据库 ###
+db.sqlite3
